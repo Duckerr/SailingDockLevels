@@ -26,24 +26,4 @@ public interface SailingDockLevelsConfig extends Config
     {
         return true;
     }
-
-    @ConfigItem(
-            keyName = "searchRadius",
-            name = "Search Radius",
-            description = "How many tiles away to search for dock matches (default: 3)"
-    )
-    default int searchRadius()
-    {
-        return 3;
-    }
-
-    @ConfigItem(
-            keyName = "debugMode",
-            name = "Debug Mode",
-            description = "Log dock coordinates to console for finding new docks"
-    )
-    default boolean debugMode()
-    {
-        return false;
-    }
 }

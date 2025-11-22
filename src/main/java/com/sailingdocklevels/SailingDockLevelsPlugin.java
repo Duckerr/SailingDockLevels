@@ -64,9 +64,13 @@ public class SailingDockLevelsPlugin extends Plugin
         // Remove existing docking points
         worldMapPointManager.removeIf(SailingDockMapPoint.class::isInstance);
 
-        if (!config.showDockLevels())
+        boolean showName = config.showDockName();
+        boolean showLevel = config.showDockLevels();
+
+        // Don't add points if both options are disabled
+        if (!showName && !showLevel)
         {
-            log.info("Sailing dock levels disabled in config");
+            log.info("Both dock name and level display disabled");
             return;
         }
 
@@ -76,7 +80,7 @@ public class SailingDockLevelsPlugin extends Plugin
                         new SailingDockMapPoint(
                                 location.getLocation(),
                                 BLANK_ICON,
-                                location.getTooltip()
+                                location.getTooltip(showName, showLevel)
                         )
                 )
                 .forEach(worldMapPointManager::add);

@@ -75,8 +75,13 @@ enum DockingPointLocation
         this.location = location;
     }
 
-    public String getTooltip()
+    public String getTooltip(boolean showName, boolean showLevel)
     {
-        return name + " - Level " + sailingLevel;
+        String displayName = showName ? name : "Docking Point";
+        if (showLevel)
+        {
+            return displayName + " - Level " + sailingLevel;
+        }
+        return displayName;
     }
 }
